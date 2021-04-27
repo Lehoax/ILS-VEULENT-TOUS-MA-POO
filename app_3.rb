@@ -5,6 +5,24 @@ require_relative 'lib/game'
 require_relative 'lib/player'
 
 
-game = Game.new("Wolverine")
+puts"------------------------------------------------"
+puts"|Bienvenue sur 'ILS VEULENT TOUS MA POO' !      |"
+puts"|Le but du jeu est d'être le dernier survivant !|"
+puts"------------------------------------------------"
 
-game.menu()
+puts "Pour créer ton joueur entre ton nom"
+print ">"
+name_user = gets.chomp
+game = Game.new(name_user)
+nb = 0
+
+while game.is_still_ongoing?
+    game.menu
+    game.menu_choice
+    game.enemies_attack
+    game.show_players
+    game.is_still_ongoing?
+
+end
+
+game.end_game()

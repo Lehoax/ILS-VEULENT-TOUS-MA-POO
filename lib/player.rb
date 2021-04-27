@@ -18,8 +18,13 @@ class Player
     end
     def attacks(player)
         damage = compute_damage()
-        player.gets_damage(damage)
-       puts "#{@name} inflige #{damage} points de dommages a #{player.name}"
+        begin
+            puts "#{@name} inflige #{damage} points de dommages a #{player.name}"
+            player.gets_damage(damage)
+        rescue
+            puts ""
+        end
+            
     end
 end
 
@@ -58,4 +63,5 @@ class HumanPlayer < Player
             puts "Waow, tu as trouvé un pack de +80 points de vie !"
         end
     end
+    
 end
