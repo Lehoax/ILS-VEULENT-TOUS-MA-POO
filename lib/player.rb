@@ -11,7 +11,7 @@ class Player
 
     def gets_damage(nb)
         @life_points -= nb
-        if @life_points <=0 ; puts "le joueur #{name} a été tué !"  end
+        if @life_points <=0 ; puts "le joueur #{name} a été tué !"; @life_points = 0 end
     end
     def compute_damage
         return rand(1..6)
@@ -40,6 +40,7 @@ class HumanPlayer < Player
         rand_choice = rand(1..6)
         puts "Tu as trouvé une arme de niveau #{ rand_choice }"
         if @weapon_level < rand_choice
+            @weapon_level = rand_choice
             puts "Youhou ! elle est meilleure que ton arme actuelle : tu la prends"
         else
             puts "M@*#$... elle n'est pas mieux que ton arme actuelle..."
@@ -50,8 +51,10 @@ class HumanPlayer < Player
         if rand_choice == 1
             puts "Tu n'as rien trouvé... "
         elsif rand_choice <=2 && rand_choice >=5
+            @life_points +=50
             puts "Bravo, tu as trouvé un pack de +50 points de vie !"
         else
+            @life_points +=80
             puts "Waow, tu as trouvé un pack de +80 points de vie !"
         end
     end
